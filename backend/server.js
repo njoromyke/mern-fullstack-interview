@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const { CONFIG } = require("./utilities/constants");
+
 app.use(express.json());
 
 app.use(
@@ -25,8 +27,8 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = CONFIG.PORT;
 
 app.listen(PORT, () => {
-  console.log(`Server running in ${CONFIG.env} mode on port ${PORT}`);
+  console.log(`Server running in ${CONFIG.NODE_ENV} mode on port ${PORT}`);
 });
