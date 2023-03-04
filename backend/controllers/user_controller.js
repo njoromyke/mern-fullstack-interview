@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const { HTTP_STATUS_CODES } = require("../utilities/constants");
 const asyncHandler = require("express-async-handler");
+const generateToken = require( "../utilities/generate_token" );
 
 // @desc    Auth user
 // @route   POST /api/users/login

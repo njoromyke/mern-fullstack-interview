@@ -62,19 +62,23 @@ const createProduct = asyncHandler(async (req, res) => {
     sale_price: parseFloat(price) - (parseFloat(price) * parseFloat(discount)) / 100,
   });
 
+  const productObj = {
+    _id: product._id,
+    name: product.name,
+    price: product.price,
+    discount: product.discount,
+    sponsored: product.sponsored,
+    rating: product.rating,
+    description: product.description,
+    image: product.image,
+    sale_price: product.sale_price,
+    message: "Product created successfully",
+  };
+
   if (product) {
     res.status(HTTP_STATUS_CODES.Created);
     res.json({
-      _id: product._id,
-      name: product.name,
-      price: product.price,
-      discount: product.discount,
-      sponsored: product.sponsored,
-      rating: product.rating,
-      description: product.description,
-      image: product.image,
-      sale_price: product.sale_price,
-      message: "Product created successfully",
+      product: productObj,
       success: true,
     });
   } else {
@@ -123,19 +127,18 @@ const updateProduct = asyncHandler(async (req, res) => {
 const deleteProduct = asyncHandler(async (req, res) => {
   const { product_id } = req.params;
 
-  const product = await Product.findById(product_id);
+  const deleteProduct = await Product.findByIdAndDelete(product_id);
 
-  if (product) {
-    await product.delete();
+  if (deleteProduct) {
     res.status(HTTP_STATUS_CODES.OK);
     res.json({
       message: "Product deleted successfully",
       success: true,
     });
-  } else {
-    res.status(HTTP_STATUS_CODES.Bad_Request);
-    throw new Error("Product not found");
   }
+
+  res.status(HTTP_STATUS_CODES.Bad_Request);
+  throw new Error("Product not found");
 });
 
 module.exports = {

@@ -23,7 +23,8 @@ const productSchema = mongoose.Schema(
 
     sponsored: {
       type: Boolean,
-      required: true,
+      required: false,
+      default: false,
     },
 
     rating: {

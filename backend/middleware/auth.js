@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const { CONFIG, HTTP_STATUS_CODES } = require("../utilities/constants");
 const asyncHandler = require("express-async-handler");
+const jwt = require("jsonwebtoken");
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
