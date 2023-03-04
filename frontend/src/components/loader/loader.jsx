@@ -2,9 +2,8 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div className="flex justify-center items-center">
-      <div className="border-t-4 border-b-4 border-gray-200 rounded-full animate-spin h-5 w-5 mr-3"></div>
-      <span>Loading...</span>
+    <div className="top-0 left-0 w-full h-full fixed flex justify-center items-center bg-white bg-opacity-75 z-50">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-pink-500"></div>
     </div>
   );
 };

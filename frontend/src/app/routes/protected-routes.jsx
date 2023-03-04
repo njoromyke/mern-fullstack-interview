@@ -1,11 +1,13 @@
 import React from "react";
+import Navbar from "../../components/navbar/navbar";
 import RouterComponent from "./route";
 
 const ProtectedRoutes = () => {
   return (
-    <div>
+    <>
+      <Navbar />
       <RouterComponent />
-    </div>
+    </>
   );
 };
 

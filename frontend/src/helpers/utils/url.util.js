@@ -9,10 +9,24 @@ function isResponseSuccess(response) {
 }
 
 export function sendGetRequest(url, successMessage) {
+  console.log("sendGetRequest", url);
   return promiseFunc(handleError(handleSuccess(api.get(url), successMessage))).then((response) =>
     isResponseSuccess(response) ? response.data : Promise.reject(response)
   );
 }
+
+export function sendDeleteRequest(url, successMessage) {
+  return promiseFunc(handleError(handleSuccess(api.delete(url), successMessage))).then((response) =>
+    isResponseSuccess(response) ? response.data : Promise.reject(response)
+  );
+}
+
+export function sendUpdateRequest(url, successMessage) {
+  return promiseFunc(handleError(handleSuccess(api.put(url), successMessage))).then((response) =>
+    isResponseSuccess(response) ? response.data : Promise.reject(response)
+  );
+}
+
 export function sendPostRequest(url, params, successMessage) {
   return promiseFunc(handleError(handleSuccess(api.post(url, params), successMessage))).then((response) =>
     isResponseSuccess(response) ? response.data : Promise.reject(response)
