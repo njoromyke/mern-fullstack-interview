@@ -1,17 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteProduct, getProduct, getProducts, login, register, updateProduct } from "../actions/actions";
+import { createProduct, deleteProduct, getProduct, getProducts, login, register, updateProduct } from "../actions/actions";
 
 const initialState = {
   products: [],
   product: {},
   loading: false,
   user: null,
+  success: false,
 };
 
 export const allSlices = createSlice({
   name: "slices",
   initialState,
-  reducers: {},
+  reducers: {
+    resetSuccessMessage: (state) => {
+      state.success = false;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getProducts.pending, (state) => ({
@@ -78,6 +83,7 @@ export const allSlices = createSlice({
         ...state,
         loading: false,
         product: action.payload,
+        success: true,
       }))
       .addCase(updateProduct.rejected, (state, action) => ({
         ...state,
@@ -92,13 +98,30 @@ export const allSlices = createSlice({
         ...state,
         loading: false,
         product: action.payload,
+        success: true,
       }))
       .addCase(deleteProduct.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.payload,
+      }))
+      .addCase(createProduct.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(createProduct.fulfilled, (state, action) => ({
+        ...state,
+        loading: false,
+        success: true,
+      }))
+      .addCase(createProduct.rejected, (state, action) => ({
         ...state,
         loading: false,
         error: action.payload,
       }));
   },
 });
+
+export const { resetSuccessMessage } = allSlices.actions;
 
 export default allSlices.reducer;

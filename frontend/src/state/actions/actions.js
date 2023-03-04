@@ -6,9 +6,9 @@ export const getProducts = createAsyncThunk("products/getProducts", async () => 
   return await sendGetRequest(url, "Products fetched successfully");
 });
 
-export const getProduct = createAsyncThunk("products/getProduct", async (id) => {
+export const getProduct = createAsyncThunk("products/getProduct", async (id, message) => {
   const url = `/products/${id}`;
-  return await sendGetRequest(url, "Product fetched successfully");
+  return await sendGetRequest(url, message);
 });
 
 export const deleteProduct = createAsyncThunk("products/deleteProduct", async (id) => {
@@ -17,8 +17,13 @@ export const deleteProduct = createAsyncThunk("products/deleteProduct", async (i
 });
 
 export const updateProduct = createAsyncThunk("products/updateProduct", async (data) => {
-  const url = `/products/${data.id}`;
+  const url = `/products/${data._id}`;
   return await sendUpdateRequest(url, data, "Product updated successfully");
+});
+
+export const createProduct = createAsyncThunk("products/createProduct", async (data) => {
+  const url = "/products";
+  return await sendPostRequest(url, data, "Product created successfully");
 });
 
 export const login = createAsyncThunk("user/login", async (data) => {

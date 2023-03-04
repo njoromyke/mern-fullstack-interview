@@ -10,7 +10,7 @@ const ViewProduct = ({ productId, onClose }) => {
   const { product } = getProductData;
 
   useEffect(() => {
-    dispatch(getProduct(productId));
+    dispatch(getProduct(productId,"Product fetched successfully"));
   }, [dispatch, productId]);
 
   return (

@@ -9,6 +9,11 @@ const Product = ({ product, handleDeleteProduct, handleViewProduct, handleUpdate
           {product.sponsored && (
             <div className="absolute top-0 right-0 bg-pink-700 text-white px-2 py-1 rounded-bl-md">Sponsored</div>
           )}
+          {product.discount > 0 && (
+            <div className="absolute bottom-0 left-0 bg-orange-100 text-orange-500 px-2 py-1 rounded">
+              {product.discount}% off
+            </div>
+          )}
           <img
             src={product.image}
             alt="Person using a pen to cross a task off a productivity paper card."
@@ -18,7 +23,11 @@ const Product = ({ product, handleDeleteProduct, handleViewProduct, handleUpdate
           />
         </div>
         <h3 className="mt-4 text-sm text-pink-700">{product.name}</h3>
-        <p className="mt-1 text-xl font-medium text-gray-900">{product.price}</p>
+        <p className="mt-1 text-xl font-medium text-gray-900 flex justify-between items-center">
+          {product.sale_price}
+
+          {product.discount > 0 && <span className="text-sm text-gray-500 line-through">Was Ksh{product.price}</span>}
+        </p>
         <Rating rating={product.rating} size={1} readonly />
         <div className="flex justify-between items-center mt-4">
           <button className="bg-blue-700 text-white px-2 py-1 rounded-md" onClick={() => handleViewProduct(product._id)}>

@@ -21,8 +21,8 @@ export function sendDeleteRequest(url, successMessage) {
   );
 }
 
-export function sendUpdateRequest(url, successMessage) {
-  return promiseFunc(handleError(handleSuccess(api.put(url), successMessage))).then((response) =>
+export function sendUpdateRequest(url, params, successMessage) {
+  return promiseFunc(handleError(handleSuccess(api.put(url, params), successMessage))).then((response) =>
     isResponseSuccess(response) ? response.data : Promise.reject(response)
   );
 }
