@@ -23,6 +23,9 @@ Run `npm run dev` to start the backend server
 Login or create an account to start using the application. use an email and password.
 Enjoy!
 
+# Deployed App Link 
+https://interview-frontend-73b3c.web.app/
+
 ## Login Credentials
 
 email: `test@gmail.com`
