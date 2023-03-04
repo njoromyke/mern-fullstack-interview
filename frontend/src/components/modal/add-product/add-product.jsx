@@ -47,11 +47,11 @@ const AddProduct = ({ onClose, productId }) => {
   }, [productId]);
 
   useEffect(() => {
-    if (product) {
+    if (productId && product) {
       setFormData(product);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product]);
+  }, [product, productId]);
 
   return (
     <Modal title="New Product" actionText="Submit" handleAction={handleSubmit} onClose={onClose}>

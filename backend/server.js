@@ -26,11 +26,10 @@ if (CONFIG.env === "development") {
   app.use(morgan("dev"));
 }
 
-// Routes
-
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
+
 app.use("/api/v1/users", user_routes);
 app.use("/api/v1/products", product_routes);
 app.use(not_found);

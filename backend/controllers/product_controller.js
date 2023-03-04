@@ -94,8 +94,6 @@ const createProduct = asyncHandler(async (req, res) => {
 const updateProduct = asyncHandler(async (req, res) => {
   const { product_id } = req.params;
 
-  console.log(req.body);
-
   const product = await Product.findById(product_id);
 
   if (product) {

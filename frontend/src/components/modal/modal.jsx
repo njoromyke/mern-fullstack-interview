@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 function Modal({ children, title, onClose, handleAction, actionText }) {
   return (

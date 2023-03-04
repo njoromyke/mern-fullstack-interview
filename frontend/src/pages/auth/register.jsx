@@ -19,7 +19,7 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     dispatch(register(formData));
@@ -41,7 +41,7 @@ const Register = () => {
           <div>
             <h2 className="mt-6 text-center text-2xl font-bold tracking-tight">Sign in to your account</h2>
           </div>
-          <form className="mt-8 space-y-6 bg-white rounded-md shadow-sm" onSubmit={handleLogin}>
+          <form className="mt-8 space-y-6 bg-white rounded-md shadow-sm" onSubmit={handleRegister}>
             <div className="p-2 pt-5">
               <div className="mb-5">
                 <label htmlFor="email-address" className="sr-only">

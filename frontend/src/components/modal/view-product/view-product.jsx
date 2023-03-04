@@ -4,13 +4,12 @@ import { getProduct } from "../../../state/actions/actions";
 import Modal from "../modal";
 
 const ViewProduct = ({ productId, onClose }) => {
-  console.log(productId);
   const dispatch = useDispatch();
   const getProductData = useSelector((state) => state.data);
   const { product } = getProductData;
 
   useEffect(() => {
-    dispatch(getProduct(productId,"Product fetched successfully"));
+    dispatch(getProduct(productId, "Product fetched successfully"));
   }, [dispatch, productId]);
 
   return (

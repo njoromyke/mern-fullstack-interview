@@ -9,7 +9,6 @@ function isResponseSuccess(response) {
 }
 
 export function sendGetRequest(url, successMessage) {
-  console.log("sendGetRequest", url);
   return promiseFunc(handleError(handleSuccess(api.get(url), successMessage))).then((response) =>
     isResponseSuccess(response) ? response.data : Promise.reject(response)
   );

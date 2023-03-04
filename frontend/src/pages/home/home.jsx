@@ -21,7 +21,6 @@ const Home = () => {
     setProductId(id);
   };
   const handleViewProduct = (id) => {
-    console.log(id, "id");
     setShowViewProductModal(true);
     setProductId(id);
   };
@@ -52,6 +51,7 @@ const Home = () => {
         <AddProduct
           onClose={() => {
             setShowAddProductModal(false);
+            setProductId(null);
           }}
           productId={productId}
         />
@@ -84,7 +84,7 @@ const Home = () => {
             handleViewProduct={handleViewProduct}
             handleUpdateProduct={handleUpdateProduct}
             product={product}
-            key={product.id}
+            key={product._id}
           />
         ))}
       </div>

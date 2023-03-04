@@ -1,12 +1,18 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { sendPostRequest } from "../../helpers/utils/url.util";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { AUTH_TOKEN } from "../../helpers/constants";
+import { storeLocally } from "../../helpers/utils/localStorage.util";
+import { login } from "../../state/actions/actions";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({});
-  const navigation = useNavigate();
+  const dispatch = useDispatch();
+
+  const data = useSelector((state) => state.data);
+  const { user } = data;
 
   const onInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,14 +20,17 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const url = "/users/login";
 
-    sendPostRequest(url, formData)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(login(formData));
   };
+
+  useEffect(() => {
+    if (user) {
+      storeLocally(AUTH_TOKEN, user.token);
+      window.location.reload();
+      window.location.href = "/";
+    }
+  }, [user]);
 
   return (
     <div className="container mx-auto p-2">
