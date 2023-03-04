@@ -65,3 +65,5 @@ const registerUser = asyncHandler(async (req, res) => {
   res.status(HTTP_STATUS_CODES.Bad_Request);
   throw new Error("Invalid user data");
 });
+
+module.exports = { authUser, registerUser };
